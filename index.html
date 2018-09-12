@@ -2,19 +2,70 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" width="device-width" initial-scale="1.0">
     <title>Match Game</title>
+    <!-- favicon / bootstrap / google fonts / stylesheets -->
     <link rel="icon" type="icon/png" href="favicon.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css">
   </head>
   <body>
 
-    <div class="container-fluid">
+    <!-- page container -->
+    <div class="container">
       <div class="row">
+        <!-- rules section -->
+        <div class="col-lg-3 col-md-12">
+          <h2>Match Game</h2>
+          <h3>Rules</h3>
+          <p>Click on a card to reveal the number on the other side. Click on a second card to try and find a match to the first. If you succeed, the pair will be removed from play. If not, try again!</p>
+          <h3>How To Win</h3>
+          <p>You win when all pairs have been found.</p>
+        </div>
+        <!-- game cards -->
+        <div class="col-lg-9 col-md-12" id="game">
+          <div class="row">
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
+            <div class="card col-3">
+            </div>
 
+          </div>
+        </div>
       </div>
-
     </div>
 
+    <!-- jquery / javascript scripts -->
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
