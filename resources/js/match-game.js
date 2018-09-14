@@ -7,10 +7,6 @@ $(document).ready(function() {
   MatchGame.renderCards(numberArray, $game);
 
 
-  $('#play').click(function() {
-    $(this).preventDefault();
-    MatchGame.renderCards(numberArray, $game);
-  });
 
 });
 /*
@@ -104,6 +100,9 @@ MatchGame.flipCard = function($card, $game) {
             $game.empty();
             const $won = $("<div id='won'><h1>You Won!</h1><span id='play'><h2>Play Again</h2></span></div>");
             $game.append($won);
+            $('#play').click(function() {
+              location.reload();
+            });
           }, 400);
         }
         $('.attempt').removeClass('attempt');
