@@ -35,16 +35,10 @@ MatchGame.generateCardValues = function () {
   object.
 */
 
-// the cardValues arguement is the function generateCardValues
-// the $game arguement is $('#game')
-// for each item in the array, create a new p element containing the array item
-// if the item is x number, style this way (switch statement)
-
-// Empty the $game objects HTML
-// Generate jQuery objects for each card, including data about the value, color, and flipped status of each card
-// Add the card objects to the $game object
 
 MatchGame.renderCards = function(cardValues, $game) {
+
+  $game.data("isFlipped", []);
 
   const colors = [
     "hsl(25, 85%, 65%)",
@@ -58,12 +52,18 @@ MatchGame.renderCards = function(cardValues, $game) {
 
   $game.empty();
   for (var i = 0; i < cardValues.length; i++) {
-    let $newCard = $("<div class='card col-3'></div>");
-    $newCard.data("number", cardValues[i]);
+    let $newCard = $('<div class="col-3 card"></div>');
+
+    $newCard.data("value", cardValues[i]);
     $newCard.data("flipped", false);
-    $newCard.data("color", ($newCard.data("number") - 1));
+    $newCard.data("color", (colors[$newCard.data("value") - 1]));
     $game.append($newCard);
   };
+
+  $('.card').click(function () {
+    MatchGame.flipCard($(this), $('#game'));
+  });
+
 };
 
 /*
@@ -73,4 +73,35 @@ MatchGame.renderCards = function(cardValues, $game) {
 
 MatchGame.flipCard = function($card, $game) {
 
+  if ($card.data("flipped") === true) {
+    return;
+  } else {
+    $card.css("background-color", $card.data("color"));
+    $card.html("<h1>" + $card.data("value") + "</h1>");
+    $card.data("flipped", true);
+    $game.data("isFlipped").push($card.data("value"));
+    $card.addClass("attempt");
+    console.log("Array length: " + $game.data("isFlipped").length);
+    if ($game.data("isFlipped").length === 2) {
+      console.log("First array value: " + $game.data("isFlipped")[0]);
+      console.log("Second array value: " + $game.data("isFlipped")[1]);
+
+      const $cardOne = $game.data("isFlipped")[0];
+      const $cardTwo = $game.data("isFlipped")[1];
+
+      if ($cardOne === $cardTwo) {
+        $('.attempt').css("background-color", "rgb(153, 153, 153)");
+        $('.attempt').children().css("color", "rgb(204, 204, 204)");
+        $game.data("isFlipped", []);
+      } else {
+        setTimeout(function() {
+          $('.attempt').css("background-color", "rgb(32, 64, 86)");
+          $('.attempt').empty();
+          $('.attempt').data("flipped", false);
+          $('.attempt').removeClass('attempt');
+          $game.data("isFlipped", []);
+        }, 500);
+      }
+    }
+  }
 };
