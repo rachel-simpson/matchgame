@@ -6,6 +6,12 @@ $(document).ready(function() {
   let numberArray = MatchGame.generateCardValues();
   MatchGame.renderCards(numberArray, $game);
 
+
+  $('#play').click(function() {
+    $(this).preventDefault();
+    MatchGame.renderCards(numberArray, $game);
+  });
+
 });
 /*
   Sets up a new game after HTML document has loaded.
@@ -70,6 +76,7 @@ MatchGame.renderCards = function(cardValues, $game) {
   Flips over a given card and checks to see if two cards are flipped over.
   Updates styles on flipped cards depending whether they are a match or not.
  */
+let correctCards = [];
 
 MatchGame.flipCard = function($card, $game) {
 
@@ -81,17 +88,25 @@ MatchGame.flipCard = function($card, $game) {
     $card.data("flipped", true);
     $game.data("isFlipped").push($card.data("value"));
     $card.addClass("attempt");
-    console.log("Array length: " + $game.data("isFlipped").length);
     if ($game.data("isFlipped").length === 2) {
-      console.log("First array value: " + $game.data("isFlipped")[0]);
-      console.log("Second array value: " + $game.data("isFlipped")[1]);
 
       const $cardOne = $game.data("isFlipped")[0];
       const $cardTwo = $game.data("isFlipped")[1];
 
+
       if ($cardOne === $cardTwo) {
+
         $('.attempt').css("background-color", "rgb(153, 153, 153)");
         $('.attempt').children().css("color", "rgb(204, 204, 204)");
+        correctCards.push('x');
+        if (correctCards.length === 8) {
+          setTimeout(function() {
+            $game.empty();
+            const $won = $("<div id='won'><h1>You Won!</h1><span id='play'><h2>Play Again</h2></span></div>");
+            $game.append($won);
+          }, 400);
+        }
+        $('.attempt').removeClass('attempt');
         $game.data("isFlipped", []);
       } else {
         setTimeout(function() {
@@ -100,7 +115,7 @@ MatchGame.flipCard = function($card, $game) {
           $('.attempt').data("flipped", false);
           $('.attempt').removeClass('attempt');
           $game.data("isFlipped", []);
-        }, 500);
+        }, 400);
       }
     }
   }

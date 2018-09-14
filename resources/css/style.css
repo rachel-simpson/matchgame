@@ -51,3 +51,37 @@ h1 {
   margin: 3px;
   padding: 0;
 }
+
+#won {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#won h1 {
+  color: rgb(32, 64, 86);
+  padding: 50px;
+}
+
+#won span {
+  background-color: rgb(32, 64, 86);
+  border-radius: 8px;
+  box-shadow: 3px 3px 5px hsl(0, 10%, 50%);
+  cursor: pointer;
+  transition: transform 1s;
+}
+
+#won span:hover {
+  transform: scale(1.2);
+}
+
+#won span:active h2 {
+  color: rgb(255, 242, 242);
+}
+
+#won h2 {
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
